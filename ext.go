@@ -49,14 +49,20 @@ func init() {
 
 var binaryExt *regexp.Regexp
 
-// IsBinaryString returns true if the given path is binary according
-// to defined BinaryFileExtensions
-func IsBinaryString(path string) bool {
-	return binaryExt.MatchString(path)
-}
-
-// IsBinary returns true if the given path is binary according
-// to defined BinaryFileExtensions
-func IsBinary(path []byte) bool {
-	return binaryExt.Match(path)
+// IsBinary returns true if the given value is binary according
+// to defined BinaryFileExtensions.
+//
+// The value can be of type string, []byte or implement interface{
+// Name() string
+// }
+func IsBinary(v interface{}) bool {
+	switch v := v.(type) {
+	case string:
+		return binaryExt.MatchString(v)
+	case []byte:
+		return binaryExt.Match(v)
+	case interface{ Name() string }:
+		return binaryExt.MatchString(v.Name())
+	}
+	return false
 }

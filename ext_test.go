@@ -1,23 +1,27 @@
 package binext
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestIsBinary(t *testing.T) {
-
 	cases := []struct {
-		v   string
+		v   interface{}
 		exp bool
 	}{
 		{".a", true},
+		{[]byte(".o"), true},
+		{os.Stdin, false},
+
 		{".txt", false},
 		{".md", false},
+
+		{1, false},
 	}
 	for _, c := range cases {
-		t.Run("ext: "+c.v, func(t *testing.T) {
-			if IsBinaryString(c.v) != c.exp {
-				t.Fail()
-			}
-			if IsBinary([]byte(c.v)) != c.exp {
+		t.Run("", func(t *testing.T) {
+			if IsBinary(c.v) != c.exp {
 				t.Fail()
 			}
 		})

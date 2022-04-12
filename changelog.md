@@ -6,4 +6,4 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [Unreleased]
 
-- Add funcs IsBinary and IsBinaryString
+- Add funcs IsBinary
