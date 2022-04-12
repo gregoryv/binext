@@ -1,9 +1,28 @@
+// Package binext provides predefined binary extension checker
 package binext
 
 import (
 	"regexp"
 	"strings"
 )
+
+// IsBinary returns true if the given value is binary according
+// to defined BinaryFileExtensions.
+//
+// The value can be of type string, []byte or implement interface{
+// Name() string
+// }
+func IsBinary(v interface{}) bool {
+	switch v := v.(type) {
+	case string:
+		return binaryExt.MatchString(v)
+	case []byte:
+		return binaryExt.Match(v)
+	case interface{ Name() string }:
+		return binaryExt.MatchString(v.Name())
+	}
+	return false
+}
 
 const BinaryFileExtensions = `
 3dm 3ds 3g2 3gp 7z a aac adp ai aif
@@ -48,21 +67,3 @@ func init() {
 }
 
 var binaryExt *regexp.Regexp
-
-// IsBinary returns true if the given value is binary according
-// to defined BinaryFileExtensions.
-//
-// The value can be of type string, []byte or implement interface{
-// Name() string
-// }
-func IsBinary(v interface{}) bool {
-	switch v := v.(type) {
-	case string:
-		return binaryExt.MatchString(v)
-	case []byte:
-		return binaryExt.Match(v)
-	case interface{ Name() string }:
-		return binaryExt.MatchString(v.Name())
-	}
-	return false
-}
