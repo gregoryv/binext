@@ -25,19 +25,22 @@ func TestIsBinary(t *testing.T) {
 		v   interface{}
 		exp bool
 	}{
-		{".a", true},
-		{[]byte(".o"), true},
+		{"file.a", true},
+		{[]byte("path/to/file.o"), true},
+		{`.\..\windows.dll`, true},
+
 		{os.Stdin, false},
+		{"plain.txt", false},
+		{"./../readme.md", false},
 
-		{".txt", false},
-		{".md", false},
-
-		{1, false},
+		{1, false}, // bad type
+		{nil, false},
 	}
 	for _, c := range cases {
-		t.Run("", func(t *testing.T) {
-			if IsBinary(c.v) != c.exp {
-				t.Fail()
+		t.Run(fmt.Sprintf("%v", c.v), func(t *testing.T) {
+			got := IsBinary(c.v)
+			if got != c.exp {
+				t.Error("got", got)
 			}
 		})
 	}
