@@ -28,6 +28,8 @@ func TestIsBinary(t *testing.T) {
 		{"file.a", true},
 		{[]byte("path/to/file.o"), true},
 		{`.\..\windows.dll`, true},
+		{`image.png`, true},
+		{`image.PNG`, true},
 
 		{os.Stdin, false},
 		{"plain.txt", false},

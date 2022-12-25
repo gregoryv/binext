@@ -15,11 +15,11 @@ import (
 func IsBinary(v interface{}) bool {
 	switch v := v.(type) {
 	case string:
-		return binaryExt.MatchString(v)
+		return binaryExt.MatchString(strings.ToLower(v))
 	case []byte:
 		return binaryExt.Match(v)
 	case interface{ Name() string }:
-		return binaryExt.MatchString(v.Name())
+		return binaryExt.MatchString(strings.ToLower(v.Name()))
 	}
 	return false
 }
