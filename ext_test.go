@@ -30,6 +30,7 @@ func TestIsBinary(t *testing.T) {
 		{`.\..\windows.dll`, true},
 		{`image.png`, true},
 		{`image.PNG`, true},
+		{`image.HEIC`, true},
 
 		{os.Stdin, false},
 		{"plain.txt", false},

@@ -35,7 +35,7 @@ dts dtshd dvb dwg dxf ecelp4800 ecelp7470
 ecelp9600 egg eol eot epub exe f4v fbs
 fh fla flac flatpak fli flv fpx fst fvt
 g3 gh gif graffle gz gzip h261 h263
-h264 icns ico ief img ipa iso jar jpeg
+h264 heic icns ico ief img ipa iso jar jpeg
 jpg jpgv jpm jxr key ktx lha lib lvp
 lz lzh lzma lzo m3u m4a m4v mar mdi
 mht mid midi mj2 mka mkv mmr mng mobi

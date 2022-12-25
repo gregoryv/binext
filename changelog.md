@@ -6,6 +6,7 @@ and this project adheres to http://semver.org/spec/v2.0.0.html.
 
 ## [unreleased]
 
+- Add extension .heic
 - Non case sensitive extensions
 
 ## [0.1.0] - 2022-04-12
